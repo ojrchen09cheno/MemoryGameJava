@@ -22,10 +22,12 @@ public class Main {
 		//Input scanner for game
 		Scanner input = new Scanner(System.in);
 		int size = 0;
+		
+		//Check if input is a positive even integer
 		while(true) {
 			if(input.hasNextInt()) {
 				size = input.nextInt();
-				if(size != 0 && size%2 == 0 )
+				if(size > 0 && size%2 == 0 )
 					break;
 				else
 					System.out.println("Invalid input. Please type a positive even number.");
@@ -118,9 +120,11 @@ public class Main {
 			int y2;
 			int x2;
 			Card second;
+			//Check for valid input
 			while(true) {
 				System.out.println("Type the column of the first card you want to pick: ");
 				while(true) {
+					//Column has to be an integer within size
 					if(input.hasNextInt()) {
 						y1 = input.nextInt()-1;
 						if(y1 < size && y1 >= 0)
@@ -136,6 +140,7 @@ public class Main {
 				}
 				System.out.println("Type the row of the first card you want to pick: ");
 				while(true) {
+					//Row has to be an integer within size
 					if(input.hasNextInt()) {
 						x1 = input.nextInt()-1;
 						if(x1 < size && x1 >= 0)
@@ -149,6 +154,7 @@ public class Main {
 					}
 
 				}
+				//Check if card is already solved
 				if(!matrix.get(y1).get(x1).isFound()) {
 					first = matrix.get(y1).get(x1);
 					first.setChosen(true);		
@@ -183,6 +189,7 @@ public class Main {
 			while(true) {
 				System.out.println("Type the column of the second card you want to pick: ");
 				while(true) {
+					//Column has to be an integer within size
 					if(input.hasNextInt()) {
 						y2 = input.nextInt()-1;
 						if(y2 < size && y2 >= 0)
@@ -198,6 +205,7 @@ public class Main {
 				}
 				System.out.println("Type the row of the second card you want to pick: ");
 				while(true) {
+					//Row has to be an integer within size
 					if(input.hasNextInt()) {
 						x2 = input.nextInt()-1;
 						if(x2 < size && x2 >= 0)
@@ -211,8 +219,10 @@ public class Main {
 					}
 
 				}
+				//Check that the second card picked isn't the same as the first card picked
 				if(x1 == x2 && y1 == y2) 
 					System.out.println("You can't choose the same card.");
+				//Check if selected card is already solved
 				else if(!matrix.get(y2).get(x2).isFound()) {
 					second = matrix.get(y2).get(x2);
 					second.setChosen(true);		
